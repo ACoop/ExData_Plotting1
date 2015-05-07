@@ -5,14 +5,25 @@ powerData$Date <- as.POSIXct(paste(powerData$Date, powerData$Time), format="%Y-%
 
 
 
-png(filename="plot3.png", width = 480, height = 480)
+png(filename="plot4.png", width = 480, height = 480)
+par(mfrow = c(2,2))
+
+#1
+plot(powerData$Date,powerData$Global_active_power, type="s",xlab = "",ylab = "Global Active Power (kilowatts)")
+
+#2
+plot(powerData$Date,powerData$Voltage, type="s",xlab = "datetime", ylab = "Voltage")
+
+#3
 plot(powerData$Date,powerData$Sub_metering_1, type="s",xlab = "",ylab = "Energy sub metering")
 points(powerData$Date,powerData$Sub_metering_2, type= "s", col="red")
 points(powerData$Date,powerData$Sub_metering_3, type= "s", col="blue")
+legend("topright",c("Sub_metering_1","Sub_metering_2","Sub_metering_3"), bty = "n", lty = c(1, 1, 1),col = c("black", "red", "blue"))
 
-legend("topright",c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),lty = c(1, 1, 1),col = c("black", "red", "blue"))
+#4
+plot(powerData$Date,powerData$Global_reactive_power, type="s", xlab = "datetime", ylab = "Global_reactive_power")
+
 dev.off()
 
 
 
-#par(mfrow = c(2,2))
